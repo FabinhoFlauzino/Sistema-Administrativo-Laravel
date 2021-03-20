@@ -57,45 +57,54 @@ class EmpresaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @return void
      */
-    public function show($id)
+    public function show(Empresa $empresa)
     {
-        //
+        return view('empresa.show', compact('empresa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @return void
      */
-    public function edit($id)
+    public function edit(Empresa $empresa)
     {
-        //
+        return view('empresa.edit', compact('empresa'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+   /**
+    * Update the specified resource in storage.
+    *
+    * @param EmpresaRequest $request
+    * @param Empresa $empresa
+    * @return void
+    */
+    public function update(EmpresaRequest $request, Empresa $empresa)
     {
-        //
+        $empresa->update($request->all());
+
+        return redirect()->route('empresas.show', compact('empresa'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Empresa $empresa, Request $request)
     {
-        //
+        $tipo = $request->tipo;
+
+        if($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            return abort(404);
+        }
+        $empresa->delete();
+
+        return redirect()->route('empresas.index', compact('tipo'));
     }
 }
