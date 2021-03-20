@@ -12,7 +12,7 @@
         <div class="image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+            <a href="#" class="d-block">{{-- Auth::user()->name --}}</a>
 
             <a class="btn btn-danger btn-sm" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -33,7 +33,7 @@
                 <a href="{{ route('home') }}" class="nav-link">
                   <i class="nav-icon fas fa-th-large"></i>
                   <p>
-                    Entrada
+                    Dashboard
                   </p>
                 </a>
             </li>
@@ -47,13 +47,13 @@
                 </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="{{ route('empresas.create') }}?tipo=fornecedor" class="nav-link">
                   <i class="fas fa-file nav-icon"></i>
                   <p>Novo Forncedor</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('empresas.index') }}?tipo=fornecedor" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Lista de Fornecedores</p>
                 </a>
@@ -71,13 +71,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="{{ route('empresas.create') }}?tipo=cliente" class="nav-link">
                   <i class="fas fa-file nav-icon"></i>
                   <p>Novo Cliente</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('empresas.index') }}?tipo=cliente" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Lista de Clientes</p>
                 </a>
@@ -95,7 +95,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="fas fa-dollar-sign nav-icon"></i>
                   <p>Novo Lançamento</p>
                 </a>

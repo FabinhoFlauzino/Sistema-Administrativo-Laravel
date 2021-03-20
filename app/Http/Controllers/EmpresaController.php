@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpresaRequest;
+use App\Model\Empresa;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -11,9 +13,16 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $tipo = $request->tipo;
+
+        if($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            return abort(404);
+        }
+        $empresas = Empresa::todasPOrTipo($tipo);
+
+        return view('empresa.index', compact('empresas', 'tipo'));
     }
 
     /**
@@ -21,9 +30,15 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $tipo = $request->tipo;
+
+        if($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            return abort(404);
+        }
+
+        return view('empresa.create', compact('tipo'));
     }
 
     /**
@@ -32,9 +47,11 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $empresa = Empresa::create($request->all());
+
+        return redirect()->route('empresas.show', $empresa->id);
     }
 
     /**
