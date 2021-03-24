@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->group( function() {
 
-Route::resource('empresas', 'EmpresaController');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('empresas', 'EmpresaController');
+    Route::resource('produtos', 'ProdutosController');
+    Route::resource('users', 'UsersController');
 
-Route::resource('produtos', 'ProdutosController');
+});

@@ -12,7 +12,7 @@
         <div class="image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">{{-- Auth::user()->name --}}</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
 
             <a class="btn btn-danger btn-sm" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -122,6 +122,12 @@
                 <a href="{{ route('produtos.index') }}" class="nav-link">
                   <i class="fas fa-boxes"></i>
                   <p>Produtos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                  <i class="fas fa-users"></i>
+                  <p>Usuários</p>
                 </a>
               </li>
             </ul>
