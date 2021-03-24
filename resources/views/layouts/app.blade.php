@@ -19,28 +19,28 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body  class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div id="app" class="wrapper">
 
         @include('layouts.menu-lateral')
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
             <section class="content-header">
-                <div class="content-fluid">
+                <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            @yield('title')
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">
-                                    <a href="{{ route('home') }}">Dashboard</a>
-                                </li>
-                                
-                                @yield('breadcrumb')
-                            </ol>
-                        </div>
+                    <div class="col-sm-6">
+                        @yield('title')
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('home') }}">Dashboard</a>
+                            </li>
+
+                            @yield('breadcrumb')
+                        </ol>
+                    </div>
                     </div>
                 </div>
             </section>
@@ -48,7 +48,7 @@
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
-                        @foreach($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -57,14 +57,14 @@
 
             @yield('content')
         </div>
-        <!-- /.content-wrapper -->
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
             <b>Sistema Administrativo</b>
             </div>
-            <strong>Copyright &copy; 2021 All rights reserved.
+            <strong>Copyright &copy; 2020 All rights reserved.
         </footer>
+
     </div>
 </body>
 </html>

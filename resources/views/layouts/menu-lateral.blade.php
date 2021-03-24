@@ -108,6 +108,25 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item  menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                Cadastros
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('produtos.index') }}" class="nav-link">
+                  <i class="fas fa-boxes"></i>
+                  <p>Produtos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
