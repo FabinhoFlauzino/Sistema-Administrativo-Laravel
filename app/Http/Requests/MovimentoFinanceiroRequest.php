@@ -43,6 +43,7 @@ class MovimentoFinanceiroRequest extends FormRequest
         $campos = $this->all();
 
         $campos['data'] = data_br_para_iso($campos['data']);
+        $campos['valor'] = numero_br_para_iso($campos['valor']);
 
         $this->replace($campos);
 

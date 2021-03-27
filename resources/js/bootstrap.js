@@ -48,3 +48,7 @@ require('../adminLTE/plugins/jquery-mask/jquery.mask');
 
 //definição das mascaras
 require('./mascaras');
+
+//plugin Select2
+require('../adminLTE/plugins/select2/js/select2');
+require('./selects');

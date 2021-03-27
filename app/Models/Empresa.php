@@ -20,6 +20,10 @@ class Empresa extends Model
         'cidade', 'estado', 'observacao', 'tipo'
     ];
 
+    protected $visible = ['id', 'text'];
+
+    protected $appends = ['text'];
+
     /**
      * Undocumented function
      *
@@ -30,5 +34,28 @@ class Empresa extends Model
     public static function todasPOrTipo(string $tipo, int $quantidade = 10): AbstractPaginator
     {
         return self::where('tipo', $tipo)->paginate($quantidade);
+    }
+
+    /**
+     * Filtrando Select2
+     *
+     * @param string $nome
+     * @param string $tipo
+     * @return void
+     */
+    public static function buscaPorNomeTipo(string $nome, string $tipo)
+    {
+        return self::where('nome', 'LIKE', "%{$nome}%")
+                    ->where('tipo', $tipo)
+                    ->get();
+    }
+
+    public function getTextAttribute()
+    {
+        return sprintf(
+            '%s (%s)',
+            $this->attributes['nome'],
+            $this->attributes['razao_social'],
+        );
     }
 }
