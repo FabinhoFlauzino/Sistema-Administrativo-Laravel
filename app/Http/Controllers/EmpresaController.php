@@ -60,8 +60,10 @@ class EmpresaController extends Controller
      * @param Empresa $empresa
      * @return void
      */
-    public function show(Empresa $empresa)
+    public function show(int $id)
     {
+        $empresa = Empresa::buscaPorId($id);
+
         return view('empresa.show', compact('empresa'));
     }
 
