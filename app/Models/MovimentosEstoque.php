@@ -20,6 +20,7 @@ class MovimentosEstoque extends Model
      */
     protected $fillable = ['produto_id', 'quantidade', 'valor', 'tipo', 'empresa_id'];
 
+    protected $with = ['produto'];
     /**
      * Relação com Produtos
      *
@@ -27,7 +28,7 @@ class MovimentosEstoque extends Model
      */
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produto::class)->withTrashed();
     }
 
     public function saldo()

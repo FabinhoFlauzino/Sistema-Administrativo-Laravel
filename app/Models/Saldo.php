@@ -13,6 +13,11 @@ class Saldo extends Model
      */
     protected $table = 'saldo';
 
+    public function movimento()
+    {
+        return $this->morphTo();
+    }
+
     /**
      * Define dados de alocação em massa
      *
@@ -25,5 +30,13 @@ class Saldo extends Model
         return self::where('empresa_id', $empresaId)
                     ->latest()
                     ->first();
+    }
+
+    public static function buscaPorIntervalo(int $empresa, string $inicio, string $fim)
+    {
+        return self::with('movimento')
+                    ->whereBetween('created_at', [$inicio, $fim])
+                    ->where('empresa_id', $empresa)
+                    ->get();
     }
 }

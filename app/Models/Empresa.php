@@ -52,9 +52,15 @@ class Empresa extends Model
      * @param integer $quantidade
      * @return AbstractPaginator
      */
-    public static function todasPOrTipo(string $tipo, int $quantidade = 10): AbstractPaginator
+    public static function todasPorTipo(string $tipo, string $busca, int $quantidade = 10): AbstractPaginator
     {
-        return self::where('tipo', $tipo)->paginate($quantidade);
+        return self::where('tipo', $tipo)
+        ->where(function($q) use($busca) {
+            $q->orWhere('nome', 'LIKE', "%$busca%")
+                ->orWhere('razao_social', 'LIKE', "%$busca%")
+                ->orWhere('nome_contato', 'LIKE', "%$busca%");
+        })
+        ->paginate($quantidade);
     }
 
     /**
@@ -77,7 +83,9 @@ class Empresa extends Model
             'movimentosEstoque' => function($query) {
                 $query->latest()->take(5);
             },
-            'movimentosEstoque.produto'
+            'movimentosEstoque.produto'  => function($query){
+                $query->withTrashed();
+            }
         ])
         ->findOrFail($id);
     }

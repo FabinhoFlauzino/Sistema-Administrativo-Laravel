@@ -18,10 +18,9 @@ class EmpresaController extends Controller
     {
         $tipo = $request->tipo;
 
-        if($tipo !== 'cliente' && $tipo !== 'fornecedor') {
-            return abort(404);
-        }
-        $empresas = Empresa::todasPOrTipo($tipo);
+        $busca = $request->search ?? '';
+
+        $empresas = Empresa::todasPorTipo($tipo, $busca);
 
         return view('empresa.index', compact('empresas', 'tipo'));
     }
@@ -63,8 +62,6 @@ class EmpresaController extends Controller
      */
     public function show(int $id)
     {
-        $empresa = Empresa::buscaPorId($id);
-
         return view('empresa.show',[
             'empresa' => Empresa::buscaPorId($id),
             'saldo' => Saldo::ultimoDaEmpresa($id)

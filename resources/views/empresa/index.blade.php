@@ -23,15 +23,28 @@
                 </div>
 
                 <div class="card-body">
+
+                    <form method="GET" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <div class="input-group">
+                            <input type="hidden" name="tipo" value="{{ $tipo }}">
+                            <input type="text" class="form-control" name="search" placeholder="Buscar..." value="{{ request('search') }}">
+                            <span class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+
                     <table class="table">
                         <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Nome Empresa</th>
-                            <th>Nome Contato</th>
-                            <th>Celular</th>
-                            <th>Ações</th>
-                          </tr>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Nome Empresa</th>
+                                <th>Nome Contato</th>
+                                <th>Celular</th>
+                                <th>Ações</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @forelse($empresas as $empresa)
@@ -42,24 +55,25 @@
                                     <td>{{ mascara($empresa->celular, '(##)#####-####') }}</td>
                                     <td>
                                         <a href="{{ route('empresas.show', $empresa) }}" class="btn btn-primary">Detalhes</a>
-                                        <a href="{{ route('empresas.edit', $empresa) }}" class="btn btn-warning">Atualizar</a>
+                                        <a href="{{ route('empresas.edit', $empresa) }}" class="btn btn-danger">Atualizar</a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>Nenhum Registro Cadastrado</td>
+                                    <td>Nenhum registro cadastrado</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                             @endforelse
                         </tbody>
-                      </table>
+                    </table>
                 </div>
+
                 <div class="card-footer clearfix">
-                    {{ $empresas->appends(['tipo'=> request('tipo')])->links() }}
-                </div>
+                    {{ $empresas->appends(['tipo' => request('tipo')])->links() }}
+              </div>
             </div>
         </div>
     </div>

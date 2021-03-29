@@ -34,7 +34,11 @@ class MovimentosFinanceiro extends Model
 
     public static function buscaPorIntervalo(string $inicio, string $fim, $quantidade = 20)
     {
-        return self::whereBetween('created_at', [$inicio, $fim])->paginate($quantidade);
+        return self::whereBetween('created_at', [$inicio, $fim])
+                    ->with(['empresa' => function($query){
+                        $query->withTrashed();
+                    }])
+                    ->paginate($quantidade);
     }
 
     public function saldo()
@@ -42,4 +46,11 @@ class MovimentosFinanceiro extends Model
         return $this->morphOne(Saldo::class, 'movimento');
     }
 
+    public static function porIdComEmpresaExcluida($id)
+    {
+        return self::with(['empresa' => function($query){
+            $query->withTrashed();
+        }])
+        ->findOrFail($id);
+    }
 }
