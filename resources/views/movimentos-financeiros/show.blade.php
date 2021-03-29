@@ -23,7 +23,6 @@
                     <div class="card-body">
 
                         <a href="{{ url('/movimentos-financeiros') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
-                        <a href="{{ url('/movimentos-financeiros/' . $movimentosfinanceiro->id . '/edit') }}" title="Edit MovimentosFinanceiro"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
 
                         <form method="POST" action="{{ url('movimentosfinanceiros' . '/' . $movimentosfinanceiro->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
@@ -39,7 +38,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $movimentosfinanceiro->id }}</td>
                                     </tr>
-                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr><tr><th> Valor </th><td>R$ {{ numero_iso_para_br($movimentosfinanceiro->valor) }} </td></tr><tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->data) }} </td></tr>
+                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr><tr><th> Valor </th><td>R$ {{ numero_iso_para_br($movimentosfinanceiro->valor) }} </td></tr><tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->created_at) }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

@@ -29,4 +29,9 @@ class MovimentosEstoque extends Model
     {
         return $this->belongsTo(Produto::class);
     }
+
+    public function saldo()
+    {
+        return $this->morphOne(Saldo::class, 'movimento');
+    }
 }
